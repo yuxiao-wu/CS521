@@ -15,13 +15,15 @@ def write_sentence():
 # Problem 7
 # take in two integers a and b and calculate the bitwise or result.
 def bit_or(a, b):
-    return a | b
+    result = a | b
+    format(result, "b")
+    return result
 
 
 # Problem 8
 # input the number of hours since Wed, Jan 1st 2020 at 12am, return a string result
 def calculate_day(num_hours):
-    num_day = num_hours / 24  # number of days elapsed
+    num_day = num_hours // 24  # number of days elapsed
     hour = num_hours % 24  # hours in the day
     day = num_day % 7  # days in the week
     if day == 0:
@@ -58,7 +60,5 @@ def calculate_volume(shape, dimensions):
         return volume
     return "Invalid Shape"
 
-# end
-a = calculate_volume("con", (3,7))
-print(a)
+
 
