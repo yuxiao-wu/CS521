@@ -61,4 +61,6 @@ def calculate_volume(shape, dimensions):
     return "Invalid Shape"
 
 
+print(bit_or(3, 5))
+
 
