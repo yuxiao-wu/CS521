@@ -51,7 +51,6 @@ def is_triangle(num):
         if sum == num:
             return True
             break
-
     return False
 
 
@@ -81,14 +80,14 @@ def random_gen(n):
 def digit_sum(num):
     num_left = num
     sum = 0
+    # Keep adding digits until last digit
     while num_left >= 10:
         digit = num_left % 10
         sum += digit
         num_left //= 10
     sum += num_left
+    # If sum is more than one digit, add digits again
     if sum >= 10:
         sum = digit_sum(sum)
     return sum
 
-
-print(calculate_letter(100))
