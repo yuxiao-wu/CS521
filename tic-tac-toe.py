@@ -33,10 +33,24 @@ class TicTacToeSim:
 
     def play_game(self):
         # This is the driver method for the simulation
-        while 1:
-            self.print_board()
-            self.take_turn(1)
-            self.change_turn()
+        self.AI = input("Would you like to play against an AI? True/False: ")
+        self.turn = int(input("Would you like to be player 1 or 2? 1/2: "))
+        print("Player", self.turn, "goes first.")
+        # Play with AI
+        if self.AI:
+            pass
+        # Play without AI
+        else:
+            while sim.check_winner() == 0:
+                self.take_turn(self.turn)
+                self.print_board()
+                self.change_turn()
+            if sim.check_winner() == -1:
+                print("It is a draw!")
+            elif sim.check_winner() == 1:
+                print("Player 1 wins!")
+            elif sim.check_winner() == 2:
+                print("Player 2 wins!")
         return
 
     # Part 2
@@ -72,6 +86,7 @@ class TicTacToeSim:
     # Part 4
     def take_turn(self, player):
         # This is the driver method for a players turn
+        print("It is Player", player, "'s turn.")
         row, col = self.get_move()
         while self.board[row][col] != 0:
             print("This move is invalid!")
@@ -97,27 +112,32 @@ class TicTacToeSim:
     def check_winner(self):
         # Check if a player has won, there are 8 ways to win.
         # Return the player who won 0 if nobody has won, and -1 if it is a draw
-        result = 0
+        result = -1
+        # check for draw
+        for row in sim.board:
+            for ele in row:
+                if ele == 0:
+                    result = 0
         # check for the same row
-        for row in seq:
+        for row in sim.board:
             if row[0] == row[1] == row[2] == 1:
                 result = 1
             if row[0] == row[1] == row[2] == 2:
                 result = 2
         # check for the same column
         for i in range(3):
-            if seq[0][i] == seq[1][i] == seq[2][i] == 1:
+            if sim.board[0][i] == sim.board[1][i] == sim.board[2][i] == 1:
                 result = 1
-            if seq[0][i] == seq[1][i] == seq[2][i] == 2:
+            if sim.board[0][i] == sim.board[1][i] == sim.board[2][i] == 2:
                 result = 2
         # check for the diagonal
-        if seq[0][0] == seq[1][1] == seq[2][2] == 1:
+        if sim.board[0][0] == sim.board[1][1] == sim.board[2][2] == 1:
             result = 1
-        if seq[0][0] == seq[1][1] == seq[2][2] == 2:
+        if sim.board[0][0] == sim.board[1][1] == sim.board[2][2] == 2:
             result = 2
-        if seq[0][2] == seq[1][1] == seq[2][0] == 1:
+        if sim.board[0][2] == sim.board[1][1] == sim.board[2][0] == 1:
             result = 1
-        if seq[0][2] == seq[1][1] == seq[2][0] == 2:
+        if sim.board[0][2] == sim.board[1][1] == sim.board[2][0] == 2:
             result = 2
 
         return result
