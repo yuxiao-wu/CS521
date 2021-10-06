@@ -2,7 +2,7 @@
 # Created by: Yuxiao Wu
 # Created on : 10/2/2021
 # no collaborators, no late days
-# source: textbook
+# source: textbook, wiki
 """
 Tic Tac Toe Simulation Starter Code
 """
@@ -33,24 +33,37 @@ class TicTacToeSim:
 
     def play_game(self):
         # This is the driver method for the simulation
-        self.AI = input("Would you like to play against an AI? True/False: ")
+        self.AI = eval(input("Would you like to play against an AI? True/False: "))
         self.turn = int(input("Would you like to be player 1 or 2? 1/2: "))
         print("Player", self.turn, "goes first.")
         # Play with AI
         if self.AI:
-            pass
+            while sim.check_winner() == 0:
+                # Player move
+                self.take_turn(self.turn)
+                self.print_board()
+                self.change_turn()
+                if sim.check_winner() != 0:
+                    break
+                # AI move
+                print("It is Player", self.turn, "'s turn.")
+                self.make_move(self.random_move(), self.turn)
+                self.print_board()
+                self.change_turn()
         # Play without AI
         else:
+            # Keep checking if someone has won
             while sim.check_winner() == 0:
                 self.take_turn(self.turn)
                 self.print_board()
                 self.change_turn()
-            if sim.check_winner() == -1:
-                print("It is a draw!")
-            elif sim.check_winner() == 1:
-                print("Player 1 wins!")
-            elif sim.check_winner() == 2:
-                print("Player 2 wins!")
+        # Print the player who won or draw
+        if sim.check_winner() == -1:
+            print("It is a draw!")
+        elif sim.check_winner() == 1:
+            print("Player 1 wins!")
+        elif sim.check_winner() == 2:
+            print("Player 2 wins!")
         return
 
     # Part 2
@@ -96,10 +109,11 @@ class TicTacToeSim:
 
     def get_available_squares(self):
         # Get a list of available squares as tuples (row,col)
-        for row_item in self.board:
-            for col_item in row_item:
-                if col_item == 0:
-                    available_squares.append(row_item, col_item)
+        available_squares = []
+        for row in range(3):
+            for col in range(3):
+                if sim.board[row][col] == 0:
+                    available_squares.append((row, col))
 
         return available_squares
 
@@ -145,7 +159,8 @@ class TicTacToeSim:
     # Part 6
     def random_move(self):
         # Choose a random move from available moves
-        return None
+        move = random.choice(sim.get_available_squares())
+        return move
 
     # Part 7
     def winning_move(self, player):
