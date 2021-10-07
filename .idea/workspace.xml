@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="018372b0-5d07-4d50-84d5-5c15266a4586" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tic-tac-toe.py" beforeDir="false" afterPath="$PROJECT_DIR$/tic-tac-toe.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +81,7 @@
       <workItem from="1632857481874" duration="803000" />
       <workItem from="1633196170910" duration="106000" />
       <workItem from="1633196551177" duration="1801000" />
-      <workItem from="1633216736167" duration="19034000" />
+      <workItem from="1633216736167" duration="19936000" />
     </task>
     <servers />
   </component>
