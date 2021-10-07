@@ -47,7 +47,12 @@ class TicTacToeSim:
                     break
                 # AI move
                 print("It is Player", self.turn, "'s turn.")
-                self.make_move(self.random_move(), self.turn)
+                if self.winning_move(self.turn):
+                    self.make_move(self.winning_move(self.turn), self.turn)
+                elif self.threat_to_lose():
+                    self.make_move(self.threat_to_lose(), self.turn)
+                else:
+                    self.make_move(self.random_move(), self.turn)
                 self.print_board()
                 self.change_turn()
         # Play without AI
@@ -72,10 +77,10 @@ class TicTacToeSim:
         for each_row in self.board:
             print("[", end="")
             # Convert the board into readable version
-            for each_move in each_row[0:2]:
-                if each_move == 0:
+            for each_ele in each_row[0:2]:
+                if each_ele == 0:
                     print("' ',", end="")
-                elif each_move == 1:
+                elif each_ele == 1:
                     print("'X',", end="")
                 else:
                     print("'O',", end="")
@@ -101,7 +106,7 @@ class TicTacToeSim:
         # This is the driver method for a players turn
         print("It is Player", player, "'s turn.")
         row, col = self.get_move()
-        while self.board[row][col] != 0:
+        while row >= 2 or col >= 2 or self.board[row][col] != 0:
             print("This move is invalid!")
             row, col = self.get_move()
         self.make_move((row, col), player)
@@ -112,7 +117,7 @@ class TicTacToeSim:
         available_squares = []
         for row in range(3):
             for col in range(3):
-                if sim.board[row][col] == 0:
+                if self.board[row][col] == 0:
                     available_squares.append((row, col))
 
         return available_squares
@@ -128,30 +133,30 @@ class TicTacToeSim:
         # Return the player who won 0 if nobody has won, and -1 if it is a draw
         result = -1
         # check for draw
-        for row in sim.board:
+        for row in self.board:
             for ele in row:
                 if ele == 0:
                     result = 0
         # check for the same row
-        for row in sim.board:
+        for row in self.board:
             if row[0] == row[1] == row[2] == 1:
                 result = 1
             if row[0] == row[1] == row[2] == 2:
                 result = 2
         # check for the same column
         for i in range(3):
-            if sim.board[0][i] == sim.board[1][i] == sim.board[2][i] == 1:
+            if self.board[0][i] == self.board[1][i] == self.board[2][i] == 1:
                 result = 1
-            if sim.board[0][i] == sim.board[1][i] == sim.board[2][i] == 2:
+            if self.board[0][i] == self.board[1][i] == self.board[2][i] == 2:
                 result = 2
         # check for the diagonal
-        if sim.board[0][0] == sim.board[1][1] == sim.board[2][2] == 1:
+        if self.board[0][0] == self.board[1][1] == self.board[2][2] == 1:
             result = 1
-        if sim.board[0][0] == sim.board[1][1] == sim.board[2][2] == 2:
+        if self.board[0][0] == self.board[1][1] == self.board[2][2] == 2:
             result = 2
-        if sim.board[0][2] == sim.board[1][1] == sim.board[2][0] == 1:
+        if self.board[0][2] == self.board[1][1] == self.board[2][0] == 1:
             result = 1
-        if sim.board[0][2] == sim.board[1][1] == sim.board[2][0] == 2:
+        if self.board[0][2] == self.board[1][1] == self.board[2][0] == 2:
             result = 2
 
         return result
@@ -159,17 +164,49 @@ class TicTacToeSim:
     # Part 6
     def random_move(self):
         # Choose a random move from available moves
-        move = random.choice(sim.get_available_squares())
+        move = random.choice(self.get_available_squares())
         return move
 
     # Part 7
     def winning_move(self, player):
         # Find a winning move for a player
-        return None
+        move = False
+        for i in range(len(self.board)):
+            # check for horizontal
+            if self.board[i][0] == self.board[i][1] == player and self.board[i][2] == 0:
+                move = (i, 2)
+            if self.board[i][0] == self.board[i][2] == player and self.board[i][1] == 0:
+                move = (i, 1)
+            if self.board[i][1] == self.board[i][2] == player and self.board[i][0] == 0:
+                move = (i, 0)
+            # check for vertical
+            if self.board[0][i] == self.board[1][i] == player and self.board[2][i] == 0:
+                move = (2, i)
+            if self.board[0][i] == self.board[2][i] == player and self.board[1][i] == 0:
+                move = (1, i)
+            if self.board[1][i] == self.board[2][i] == player and self.board[2][i] == 0:
+                move = (0, i)
+        # check for diagonal
+        if (self.board[0][0] == self.board[2][2] == player or self.board[0][2] == self.board[2][0] == player) and self.board[1][1] == 0:
+            move = (1, 1)
+        if self.board[0][0] == self.board[1][1] == player and self.board[2][2] == 0:
+            move = (2, 2)
+        if self.board[2][2] == self.board[1][1] == player and self.board[0][0] == 0:
+            move = (0, 0)
+        if self.board[0][2] == self.board[1][1] == player and self.board[2][0] == 0:
+            move = (2, 0)
+        if self.board[1][1] == self.board[2][0] == player and self.board[0][2] == 0:
+            move = (0, 2)
+        return move
 
     def threat_to_lose(self):
         # Run winning_move from other perspective
-        return
+        move = False
+        if self.turn == 1:
+            move = self.winning_move(2)
+        elif self.turn == 2:
+            move = self.winning_move(1)
+        return move
 
     def smart_move(self):
         # If there is a winning move, win
@@ -180,3 +217,4 @@ class TicTacToeSim:
 
 sim = TicTacToeSim()
 sim.play_game()
+
