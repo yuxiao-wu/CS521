@@ -37,33 +37,45 @@ class TicTacToeSim:
         # Play with AI
         if self.AI == "True":
             self.turn = int(input("Would you like to be player 1 or 2? 1/2: "))
-            print("Player", self.turn, "goes first.")
-            while sim.check_winner() == 0:
-                # Player move
-                self.take_turn(self.turn)
-                self.print_board()
-                self.change_turn()
-                if sim.check_winner() != 0:
-                    break
-                # AI move
-                print("It is Player", self.turn, "'s turn.")
-                self.make_move(self.smart_move(), self.turn)
-                self.print_board()
-                self.change_turn()
+            print("Player 1 goes first.")
+            if self.turn == 1:
+                self.AITurn = 2
+                while self.check_winner() == 0:
+                    # Player move first
+                    self.take_turn(self.turn)
+                    self.print_board()
+                    if self.check_winner() != 0:
+                        break
+                    # AI move
+                    print("It is Player", self.AITurn, "'s turn.")
+                    self.make_move(self.smart_move(), self.AITurn)
+                    self.print_board()
+            elif self.turn == 2:
+                self.AITurn = 1
+                while self.check_winner() == 0:
+                    # AI moves first
+                    print("It is Player", self.AITurn, "'s turn.")
+                    self.make_move(self.smart_move(), self.AITurn)
+                    self.print_board()
+                    if self.check_winner() != 0:
+                        break
+                    # then player move
+                    self.take_turn(self.turn)
+                    self.print_board()
         # Play without AI
         else:
             # Keep checking if someone has won
             print("Player", self.turn, "goes first.")
-            while sim.check_winner() == 0:
+            while self.check_winner() == 0:
                 self.take_turn(self.turn)
                 self.print_board()
                 self.change_turn()
         # Print the player who won or draw
-        if sim.check_winner() == -1:
+        if self.check_winner() == -1:
             print("It is a draw!")
-        elif sim.check_winner() == 1:
+        elif self.check_winner() == 1:
             print("Player 1 wins!")
-        elif sim.check_winner() == 2:
+        elif self.check_winner() == 2:
             print("Player 2 wins!")
         return
 
@@ -207,8 +219,8 @@ class TicTacToeSim:
 
     def smart_move(self):
         # If there is a winning move, win
-        if self.winning_move(self.turn):
-            move = self.winning_move(self.turn)
+        if self.winning_move(self.AITurn):
+            move = self.winning_move(self.AITurn)
         # If there is a threat to lose, block
         elif self.threat_to_lose():
             move = self.threat_to_lose()
@@ -218,5 +230,5 @@ class TicTacToeSim:
         return move
 
 
-sim = TicTacToeSim()
-sim.play_game()
+# sim = TicTacToeSim()
+# sim.play_game()
