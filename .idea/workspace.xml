@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="018372b0-5d07-4d50-84d5-5c15266a4586" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_7_2021_12_29_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_7_2021_12_29_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tic-tac-toe.py" beforeDir="false" afterPath="$PROJECT_DIR$/tic-tac-toe.py" afterDir="false" />
+    <list default="true" id="1b86ad80-4c93-46d1-8319-10964ebcb08e" name="Changes" comment="1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="018372b0-5d07-4d50-84d5-5c15266a4586" name="Changes" comment="" />
+      <changelist id="1b86ad80-4c93-46d1-8319-10964ebcb08e" name="Changes" comment="1" />
       <created>1631909476435</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -82,10 +81,8 @@
       <workItem from="1632857481874" duration="803000" />
       <workItem from="1633196170910" duration="106000" />
       <workItem from="1633196551177" duration="1801000" />
-      <workItem from="1633216736167" duration="19936000" />
-      <workItem from="1633581472186" duration="1073000" />
-      <workItem from="1633582577275" duration="3616000" />
-      <workItem from="1633663725253" duration="1730000" />
+      <workItem from="1633216736167" duration="13344000" />
+      <workItem from="1634165280396" duration="19000" />
     </task>
     <servers />
   </component>
@@ -105,9 +102,9 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/tic_tac_toe_py$tic_tac_toe.coverage" NAME="tic-tac-toe Coverage Results" MODIFIED="1633663934888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS521$hw1.coverage" NAME="hw2 Coverage Results" MODIFIED="1632808147551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS521$hw2.coverage" NAME="tic-tac-toe Coverage Results" MODIFIED="1633553522281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CS521$tic_tac_toe.coverage" NAME="tic-tac-toe Coverage Results" MODIFIED="1633582332142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/tic_tac_toe_py$tic_tac_toe.coverage" NAME="tic-tac-toe Coverage Results" MODIFIED="1633581251086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS521$hw1.coverage" NAME="tic-tac-toe Coverage Results" MODIFIED="1633477987058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CS521$hw2.coverage" NAME="tic-tac-toe Coverage Results" MODIFIED="1633304246605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hw1_py$hw1.coverage" NAME="hw1 Coverage Results" MODIFIED="1632356896340" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
