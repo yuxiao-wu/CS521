@@ -93,6 +93,7 @@ def pascal(row):
     if row == 0:
         return current_row
     prev_row = pascal(row - 1)
+    # Find the current row from the previous row
     for i in range(len(prev_row) - 1):
         current_row.append(prev_row[i] + prev_row[i + 1])
     return current_row + [1]
