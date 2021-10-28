@@ -61,9 +61,8 @@ class Cipher:
                             'v': 21, 'w': 22, 'x': 23, 'y': 24, 'z': 25, ' ': 26}
         self.inverse_dict = {v: k for k, v in self.letter_dict.items()}
         self.letter_heuristics = {}
-
-    # self.wordlist = []
-    # self.read_csv()
+        self.wordlist = []
+        self.read_csv()
 
     def rotate_letter(self, letter, n):
         # Rotate a letter by n and return the new letter
@@ -83,7 +82,7 @@ class Cipher:
         ciphered_text = []
         for letter in message:
             ciphered_text.append(self.rotate_letter(letter, n))
-        return ciphered_text
+        return ''.join(ciphered_text)
 
     def decode_caesar(self, cipher_text, n):
         # Decode a cipher text by using rotate_letter the opposite direction and return the original message
@@ -92,7 +91,7 @@ class Cipher:
             for pairs in self.letter_dict:
                 if letter == self.rotate_letter(pairs, n):
                     original_message.append(pairs)
-        return original_message
+        return ''.join(original_message)
 
     def read_csv(self):
         # Read the letter frequency csv and create a heuristic save in a class variable
@@ -112,21 +111,42 @@ class Cipher:
 
     def crack_caesar(self, cipher_text):
         # Break a caesar cipher by finding and returning the most probable outcome
-        return None
+        high_score = self.score_string(cipher_text)
+        for i in range(1, 27):
+            new_text = self.decode_caesar(cipher_text, i)
+            text_score = self.score_string(new_text)
+            if text_score > high_score:
+                high_score = text_score
+                final_message = new_text
+        return final_message
 
     def encode_vigenere(self, message, key):
         # Encode message using rotation by key string characters
-        return None
+        ciphered_text = []
+        for i in range(len(message)):
+            n = self.letter_dict.get(key[i % len(key)])
+            ciphered_text.append(self.rotate_letter(message[i], n))
+        return ''.join(ciphered_text)
 
     def decode_vigenere(self, cipher_text, key):
         # Decode ciphertext using rotation by key string characters
-        return None
+        original_message = []
+        for i in range(len(cipher_text)):
+            n = self.letter_dict.get(key[i % len(key)])
+            for pairs in self.letter_dict:
+                if cipher_text[i] == self.rotate_letter(pairs, n):
+                    original_message.append(pairs)
+        return ''.join(original_message)
+
 
     def encode_otp(self, message):
         # Similar to a vernan cipher, but we will generate a random key string and return it
-
+        key_list = []
         numeric_message = string_to_binary(message)
-        return None, None
+        numeric_message_string = binary_to_binary_string(numeric_message)
+        for _ in range(len(numeric_message_string)):
+            key_list.append(random.randint(0, 1))
+        return numeric_message, key_list
 
     def decode_otp(self, cipher_text, key):
         # XOR cipher text and key. Convert result to string
@@ -145,8 +165,6 @@ class Cipher:
 
 print("---------------------TEST CASES---------------------------")
 cipher_suite = Cipher()
-cipher_suite.read_csv()
-print(cipher_suite.score_string("hello"))
 print("---------------------PART 1: CAESAR-----------------------")
 message = read_message()
 cipher_text = cipher_suite.encode_caesar(message, 5)
