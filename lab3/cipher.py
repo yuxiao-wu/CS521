@@ -1,3 +1,9 @@
+# File name: cipher.py
+# Created By: Yuxiao Wu
+# Created on： 10/28/2021
+# No collaborators, no late days
+# Source: Textbook, wiki
+
 import binascii
 import csv
 import random
@@ -138,29 +144,55 @@ class Cipher:
                     original_message.append(pairs)
         return ''.join(original_message)
 
-
     def encode_otp(self, message):
         # Similar to a vernan cipher, but we will generate a random key string and return it
         key_list = []
         numeric_message = string_to_binary(message)
         numeric_message_string = binary_to_binary_string(numeric_message)
         for _ in range(len(numeric_message_string)):
-            key_list.append(random.randint(0, 1))
-        return numeric_message, key_list
+            key_list.append(get_random_bit())
+        binary_key = binary_string_to_binary(''.join(key_list))
+        ciphered_text = binary_key ^ numeric_message
+        return ciphered_text, binary_key
 
     def decode_otp(self, cipher_text, key):
         # XOR cipher text and key. Convert result to string
-        return None
+        return binary_to_string(cipher_text ^ key)
 
     def read_wordlist(self):
         # Extra Credit: Read all words in wordlist and store in list. Remember to strip the endline characters
         filename = "wordlist.txt"
+        f = open(filename, 'r')
+        for line in f:
+            self.wordlist.append(line.replace('\n', '').lower())
 
     def crack_vigenere(self, cipher_text):
         # Extra Credit: Break a vigenere cipher by trying common words as passwords
         # Return both the original message and the password used
         self.read_wordlist()
-        return None, None
+        high_score = self.score_string(cipher_text)
+        for password in self.wordlist:
+            try_message = self.decode_vigenere(cipher_text, password)
+            message_score = self.score_string(try_message)
+            if message_score >= high_score:
+                high_score = message_score
+                original_message = try_message
+                original_password = password
+        return original_message, original_password
+
+    def crack_otp(self, cipher_text):
+        # Extra Credit: attempt to attack the OTP
+        # Return both the original message and the password key used
+        key = cipher_text
+        high_score = self.score_string(self.decode_otp(cipher_text, key))
+        for password in range(cipher_text):
+            try_message = self.decode_otp(cipher_text, password)
+            message_score = self.score_string(try_message)
+            if message_score >= high_score:
+                high_score = message_score
+                original_message = try_message
+                original_password = password
+        return original_message, original_password
 
 
 print("---------------------TEST CASES---------------------------")
@@ -191,6 +223,9 @@ print('Generated Key:', key)
 print('Decoded:', decoded_message)
 
 print('---------PART 5: Breaking Vignere (Extra Credit)----------')
+password = 'smart'
+print('Encryption key: ', password)
+cipher_text = cipher_suite.encode_vigenere(message, password)
 cracked, pwrd = cipher_suite.crack_vigenere(cipher_text)
 print('Cracked Code:', cracked)
 print('Password:', pwrd)
