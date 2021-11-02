@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2aa5392-4a18-4591-bd60-081d45cbf7e3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/-wordlist.txt.url" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cipher.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/letter_frequencies.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/message.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="c2aa5392-4a18-4591-bd60-081d45cbf7e3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,6 +65,7 @@
       <workItem from="1635373028775" duration="5488000" />
       <workItem from="1635398831650" duration="6507000" />
       <workItem from="1635409347558" duration="2154000" />
+      <workItem from="1635893323078" duration="113000" />
     </task>
     <servers />
   </component>
