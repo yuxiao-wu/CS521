@@ -1,7 +1,9 @@
 # CS544 Homework 4
 # Yuxiao Wu
 # 10/31/2021
+
 options(scipen = 999, digits = 2)
+
 # Part 1 Binomial distribution
 # a)
 n = 5; p = 0.4;
@@ -31,8 +33,9 @@ sum(dbinom(2:n, size = n, prob = p))
 
 # d)
 r = rbinom(1000, size= n, prob= p)
-plot(table(r))
-
+plot(table(r), type = 'h', xlab = "Number of perfect score",
+     ylab = "Number of Students")
+abline(h = 0, col="red")
 
 # Part 2 Negative Binomial distribution
 # a)
@@ -64,7 +67,9 @@ pnbinom(4, size = r, prob = p)
 
 # d)
 r = rnbinom(1000, size = r, prob = p)
-plot(table(r))
+plot(table(r), type = 'h', xlab = "Number of failures",
+     ylab = "Number of Students")
+abline(h = 0, col="red")
 
 
 # Part 3 Hypergeometric distribution
@@ -92,7 +97,9 @@ phyper(10, m = M, n = N, k = K, lower.tail = FALSE)
 
 # d)
 r = rhyper(1000, m = M, n = N, k = K)
-plot(table(r))
+plot(table(r), type = 'h', xlab = "Number of MC questions",
+     ylab = "Number of Students")
+abline(h = 0, col="red")
 
 # Part 4 Poisson distribution
 # a)
@@ -113,9 +120,10 @@ abline(h=0, col="red")
 
 # e)
 r = rpois(50, lambda = 10)
-plot(table(r))
+plot(table(r), type = 'h', xlab = "Number of Students come to OH",
+     ylab = "Number of Days")
+abline(h = 0, col="red")
 boxplot(r, horizontal = TRUE)
-fivenum(r)
 # in most days, 8-12 students will attend the office
 # hour.
 
@@ -126,7 +134,7 @@ mu <- 100; sigma <- 10
 pdf = dnorm(x, mean = mu, sd = sigma)
 plot(x, pdf, type="l", col="red", 
      xlim=c(70,130),
-     main="Money Spent", xlab="Days", ylab="PDF")
+     main="Money Spent", xlab="x", ylab="PDF")
 
 # b)
 pnorm(mu - 2*sigma, mean = mu, sd = sigma)
@@ -158,5 +166,7 @@ paste("The min you have to spend to get T-shirt is",qnorm(0.98, mean = mu, sd = 
 # g)
 r <- rnorm(10000, mean = mu, sd = sigma)
 r <- round(r)
-plot(table(r), type = 'h')
+plot(table(r), type = 'h',xlab = "Number of Money spent",
+     ylab = "Number of Visitors")
+abline(h = 0, col="red")
 
